@@ -21,19 +21,19 @@ class BookmyshowApplicationTests {
 	@Test
 	public void testSignUpFunctionality(){
 		SignupRequestDto requestDto = new SignupRequestDto();
-		requestDto.setName("sarvesh");
-		requestDto.setEmail("sarvesh@gmail.com");
-		requestDto.setPassword("abcd");
+		requestDto.setName("ayush");
+		requestDto.setEmail("ayush@gmail.com");
+		requestDto.setPassword("bcde");
 		SignupResponseDto responseDto = userController.signup(requestDto);
-		System.out.println(responseDto);
+		System.out.println(responseDto.getUserId());
 	}
-
+@Test
 	public void testLoginFunctionality(){
 		LoginRequestDto requestDto = new LoginRequestDto();
 		requestDto.setEmail("sarvesh@gmail.com");
 		requestDto.setPassword("abcd");
 		LoginResponseDto loginResponse = userController.login(requestDto);
-		System.out.println(loginResponse);
+		System.out.println(loginResponse.getStatus());
 	}
 
 
