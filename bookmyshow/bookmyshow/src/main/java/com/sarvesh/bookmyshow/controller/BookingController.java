@@ -5,15 +5,20 @@ import com.sarvesh.bookmyshow.dto.BookingResponseDto;
 import com.sarvesh.bookmyshow.dto.ResponseStatus;
 import com.sarvesh.bookmyshow.model.Booking;
 import com.sarvesh.bookmyshow.service.BookingService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
+@RequestMapping("bms/v1/bookings")
 public class BookingController {
-        private BookingService bookingService;
+    private BookingService bookingService;
     public BookingController(BookingService bookingService){
         this.bookingService=bookingService;
     }
-    public BookingResponseDto createBooking(BookingRequestDto requestDto){
+    @PostMapping()
+    public ResponseEntity<BookingResponseDto> createBooking(@RequestBody BookingRequestDto requestDto){
         BookingResponseDto responseDto = new BookingResponseDto();
         try {
             Booking booking = bookingService.createBooking(requestDto.getUserId(),
@@ -25,6 +30,6 @@ public class BookingController {
         }catch (Exception e){
             responseDto.setStatus(ResponseStatus.FAILURE);
         }
-        return responseDto;
+        return new ResponseEntity<>(responseDto, HttpStatus.CREATED);
         }
 }

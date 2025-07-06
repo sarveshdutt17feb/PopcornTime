@@ -8,6 +8,7 @@ import com.sarvesh.bookmyshow.dto.SignupResponseDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.ResponseEntity;
 
 @SpringBootTest
 class BookmyshowApplicationTests {
@@ -24,16 +25,16 @@ class BookmyshowApplicationTests {
 		requestDto.setName("ayush");
 		requestDto.setEmail("ayush@gmail.com");
 		requestDto.setPassword("bcde");
-		SignupResponseDto responseDto = userController.signup(requestDto);
-		System.out.println(responseDto.getUserId());
+		ResponseEntity<SignupResponseDto> responseDto = userController.signup(requestDto);
+		System.out.println(responseDto);
 	}
 @Test
 	public void testLoginFunctionality(){
 		LoginRequestDto requestDto = new LoginRequestDto();
 		requestDto.setEmail("sarvesh@gmail.com");
 		requestDto.setPassword("abcd");
-		LoginResponseDto loginResponse = userController.login(requestDto);
-		System.out.println(loginResponse.getStatus());
+		ResponseEntity<LoginResponseDto> loginResponse = userController.login(requestDto);
+		System.out.println(loginResponse);
 	}
 
 
